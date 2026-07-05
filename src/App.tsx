@@ -1,7 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { HomePage } from "./pages/HomePage";
+import { TutorialDetailPage } from "./pages/TutorialDetailPage";
+
 export function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-zinc-950">
-      <h1 className="text-cyan-300">Hello World</h1>
-    </div>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/tutorial/:slug" element={<TutorialDetailPage />} />
+          {/* Fallback */}
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
